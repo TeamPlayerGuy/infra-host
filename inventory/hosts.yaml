@@ -23,6 +23,8 @@ k8s_cluster:
   children:
     k8s_masters:
     k8s_workers:
+    k8s_new_masters:
+    k8s_new_workers:
   vars:
     ansible_user: teamplayerguy
     ansible_python_interpreter: /usr/bin/python3
