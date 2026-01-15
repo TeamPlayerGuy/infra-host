@@ -16,6 +16,8 @@ k8s_new_workers:
   hosts:
     suarm16wrk001:
       ansible_host: 10.10.10.5
+    suarm16wrk002:
+      ansible_host: 10.10.10.6
 
 k8s_cluster:
   children:
