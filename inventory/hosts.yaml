@@ -11,7 +11,7 @@ k8s_workers:
       ansible_host: 10.10.10.4
 
 k8s_new_masters:
-  
+
 k8s_new_workers:
   hosts:
     suarm16wrk001:
