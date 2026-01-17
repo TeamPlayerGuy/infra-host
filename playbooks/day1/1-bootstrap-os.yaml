@@ -1,6 +1,7 @@
 ---
 - name: Bootstrap Raspberry Pi for Kubernetes
   hosts: k8s_new_workers
+
   tasks:
     - name: Disable swap
       command: swapoff -a
@@ -48,19 +49,9 @@
     - name: Harden SSH
 
     - name: Install required packages
-
-      loop:
-        - containerd.io # Container Runtime we'll be using
-        - avahi-daemon # Enables host.local mDNS
-        - apt-transport-https # Enable apt to fetch over HTTPS
-        - ca-certificates # Ensures system can validate secure package downloads
-        - curl
-        - gpg # GNU Privacy Guard required to import Kube keyring
-        - kubelet # Kubernetes
-        - kubeadm # Kubernetes
-        - kubectl # Kubernetes
-        - device-tree-compiler # Required to compile boot loader after edit
-        - nfs-common # Required by Longhorn
-        - open-iscsi # Required by Longhorn
+      package: 
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ packages }}"
 
     - name: Reboot and Validate
