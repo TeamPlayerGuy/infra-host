@@ -1,0 +1,23 @@
+---
+- name: handlers
+  hosts: suarm16wrk001
+  tasks:
+    - name: Install apache
+      package:
+        name: apache2
+        state: latest
+    - name: start httpd
+      service:
+        name: apache2
+        state: started
+    - name: Modify config
+      lineinfile:
+        path: /etc/apache2/apache2.conf
+        line: "# Managed by ansible"
+        insertafter: EOF
+      notify: restart httpd
+  handlers:
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted

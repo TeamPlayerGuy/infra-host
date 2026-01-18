@@ -1,0 +1,37 @@
+packages:
+  - name: containerd.io
+    note: Container runtime
+
+  - name: avahi-daemon
+    note: Enables host.local mDNS
+
+  - name: apt-transport-https
+    note: Allows apt to fetch over HTTPS
+
+  - name: ca-certificates
+    note: Validates secure package downloads
+
+  - name: curl
+    note: HTTP client
+
+  - name: gpg
+    note: Required to import Kubernetes keyring
+
+  - name: kubelet
+    note: Kubernetes node agent
+
+  - name: kubeadm
+    note: Kubernetes cluster bootstrap tool
+
+  - name: kubectl
+    note: Kubernetes CLI
+
+  - name: device-tree-compiler
+    note: Required to recompile Pi bootloader DTB
+
+  - name: nfs-common
+    note: Required by Longhorn
+
+  - name: open-iscsi
+    note: Required by Longhorn
+

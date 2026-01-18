@@ -1,0 +1,18 @@
+---
+- name: Print hash to CLI
+  hosts: all
+  tasks:
+    - name: Get hash of reference DTB from repo
+      set_fact:
+        reference_dtb_hash: "{{ lookup('file', '../../files/bcm2712-rpi-5-b.dtb') | hash('sha256') }}"
+
+    - name: Get hash of remote host file
+      stat:
+        path: /boot/firmware/current/bcm2712-rpi-5-b.dtb
+        checksum_algorithm: sha256
+      register: fileinfo
+
+    - name: When mismatch print to console
+      debug:
+        msg: "Hash mismatch"
+      when: fileinfo.stat.checksum != reference_dtb_hash

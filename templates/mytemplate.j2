@@ -1,0 +1,32 @@
+# Host inventory
+-----------------
+
+# Current host summary
+host: {{ inventory_hostname }}
+hostname: {{ ansible_facts.hostname }}
+os: {{ ansible_facts.distribution }}
+memory: {{ ansible_facts.memtotal_mb }} MB
+
+{% if ansible_facts.memtotal_mb < memory_limit %}
+Warning, low on memory
+{% endif %}
+
+Interfaces:
+{% for iface in ansible_facts.interfaces %}
+- {{ iface }}
+{% endfor %}
+
+# Summary for all hosts
+
+{% for host in groups['all'] %}
+Host: {{ host }}
+Hostname: {{ hostvars[host].ansible_facts.hostname }}
+Os: {{ hostvars[host].ansible_facts.distribution }}
+Memory: {{ hostvars[host].ansible_facts.memtotal_mb }} MB
+
+Interfaces
+
+{% for iface in hostvars[host].ansible_facts.interfaces %}
+- {{ iface }}
+{% endfor %}
+{% endfor %}

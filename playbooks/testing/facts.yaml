@@ -1,0 +1,12 @@
+---
+- name: Facts playbook
+  hosts: all
+  tasks:
+    - name: Get basic information
+      debug:
+        msg: >
+          Hostname: {{ ansible_facts.hostname }} -
+          OS: {{ ansible_facts.distribution}} {{ ansible_facts.distribution_version }} -
+          Kernel: {{ ansible_facts.kernel }} -
+          Architecture: {{ ansible_facts.architecture }} -
+          Memory: {{ ansible_facts.memtotal_mb }}
