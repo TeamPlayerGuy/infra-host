@@ -1,0 +1,10 @@
+---
+- name: deploy template
+  hosts: all
+  vars:
+    memory_limit: 30000
+  tasks:
+    - name: template
+      template:
+        src: ../../templates/mytemplate.j2
+        dest: "/home/teamplayerguy/{{ inventory_hostname }}_report.txt"

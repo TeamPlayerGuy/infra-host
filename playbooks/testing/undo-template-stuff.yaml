@@ -1,0 +1,8 @@
+---
+- name: Undo the host report created by template playbook
+  hosts: all
+  tasks:
+    - name: Delete previously created file
+      file:
+        path: /home/teamplayerguy/{{ ansible_facts.hostname | lower }}_report.txt
+        state: absent
