@@ -1,0 +1,6 @@
+---
+- name: Ensure basic roles
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - base
