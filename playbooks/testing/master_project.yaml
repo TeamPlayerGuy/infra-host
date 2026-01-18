@@ -1,0 +1,16 @@
+---
+- name: Create projects
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Fail if project name not supplied
+      ansible.builtin.fail:
+        msg: The project_root must be defined with option -e
+      when: project_root is not defined
+
+    - name: Create the directory for the project
+      ansible.builtin.file:
+        path: "{{ project_root }}"
+        state: directory
+        mode: 0755
