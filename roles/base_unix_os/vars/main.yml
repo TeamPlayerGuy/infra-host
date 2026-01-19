@@ -1,0 +1,29 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for base_unix_os
+
+base_kernel_modules:
+  - overlay
+  - br_netfilter
+
+base_packages:
+  - name: containerd.io
+    note: Container runtime
+
+  - name: avahi-daemon
+    note: Enables host.local mDNS
+
+  - name: curl
+    note: HTTP client
+
+  - name: kubelet
+    note: Kubernetes node agent
+
+  - name: kubeadm
+    note: Kubernetes cluster bootstrap tool
+
+  - name: kubectl
+    note: Kubernetes CLI
+
+  - name: device-tree-compiler
+    note: Required to recompile Pi bootloader DTB
