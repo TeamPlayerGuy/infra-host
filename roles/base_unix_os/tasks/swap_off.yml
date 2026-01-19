@@ -7,8 +7,8 @@
   when: ansible_swaptotal_mb | int > 0
 
 - name: Remove swap entry from /etc/fstab
-  ansible.builtin.replace:
-    path: /etc/fstab
-    regexp: '^\s*([^#]\S+\s+\S+\s+swap\s+.*)$'
-    replace: '# \1'
+  ansible.posix.mount:
+    name: swap
+    fstype: swap
+    state: absent
   when: swapoff_result is changed
