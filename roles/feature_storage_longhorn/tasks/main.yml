@@ -1,3 +1,16 @@
-#SPDX-License-Identifier: MIT-0
 ---
 # tasks file for storage_longhorn
+
+- name: Ensure required packages for longhorn
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nfs-common
+    - open-iscsi
+
+- name: Ensure iscsid is running
+  ansible.builtin.service:
+    name: iscsid
+    state: started
+    enabled: true

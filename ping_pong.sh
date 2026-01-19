@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible k8s_cluster -m ping
+ansible k8s_new_cluster -m ping
