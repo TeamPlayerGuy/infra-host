@@ -1,1 +1,6 @@
 ---
+- name: Install required packages
+  packages:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ base_packages }}"
