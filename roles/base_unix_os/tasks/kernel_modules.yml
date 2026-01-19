@@ -18,11 +18,19 @@
 
 - name: Ensure required kernel modules load at boot
   ansible.builtin.copy:
+    src: k8s-modules.conf
     dest: /etc/modules-load.d/k8s.conf
-    content: |
-      {% for item in base_kernel_modules %}
-      {{ item }}
-      {% endfor %}
     owner: root
     group: root
     mode: '0644'
+
+- name: Ensure sysctl settings for Kube networking
+  ansible.builtin.copy:
+    src: k8s-sysctl.conf
+    dest: /ect/sysctl.d/k8s.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Apply sysctl settings
+  command: sudo sysctl --system
