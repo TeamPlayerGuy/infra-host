@@ -1,3 +1,9 @@
 #SPDX-License-Identifier: MIT-0
 ---
-# tasks file for base_os
+# tasks file for base_unix_os
+
+- import_tasks: packages.yml
+- import_tasks: kernel_modules.yml
+- import_tasks: sysctl.yml
+- import_tasks: swap_off.yml
+- import_tasks: ssh_hardening.yml
