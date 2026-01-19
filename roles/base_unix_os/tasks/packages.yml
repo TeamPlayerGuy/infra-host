@@ -1,4 +1,5 @@
 ---
+
 - name: Install required packages
   packages:
     name: "{{ item }}"
