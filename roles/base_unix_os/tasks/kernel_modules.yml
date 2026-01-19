@@ -33,4 +33,4 @@
     mode: '0644'
 
 - name: Apply sysctl settings
-  command: sudo sysctl --system
+  ansible.builtin.command: sudo sysctl --system
