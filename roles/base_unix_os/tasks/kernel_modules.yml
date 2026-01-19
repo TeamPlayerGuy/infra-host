@@ -1,0 +1,28 @@
+---
+
+- name: Fail if system is not systemd managed
+  ansible.builtin.fail:
+    msg: "Warning: this system does not use systemd"
+  when: >
+    (
+      ansible_os_family == 'Windows'
+      or
+      ansible_service_mgr != 'systemd'
+    )
+
+- name: Ensure required kernel modules are loaded
+  ansible.builtin.modprobe:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ base_kernel_modules }}"
+
+- name: Ensure required kernel modules load at boot
+  ansible.builtin.copy:
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      {% for item in base_kernel_modules %}
+      {{ item }}
+      {% endfor %}
+    owner: root
+    group: root
+    mode: '0644'
