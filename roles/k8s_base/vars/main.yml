@@ -1,3 +1,16 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for k8s_base
+
+base_packages:
+  - name: containerd.io
+    note: Container runtime
+
+  - name: kubelet
+    note: Kubernetes node agent
+
+  - name: kubeadm
+    note: Kubernetes cluster bootstrap tool
+
+  - name: kubectl
+    note: Kubernetes CLI
