@@ -18,16 +18,3 @@ base_packages:
 
   - name: ca-certificates
     note: Trusted certificates bundle for HTTPS package downloads
-
-base_packages:
-  - name: containerd.io
-    note: Container runtime
-
-  - name: kubelet
-    note: Kubernetes node agent
-
-  - name: kubeadm
-    note: Kubernetes cluster bootstrap tool
-
-  - name: kubectl
-    note: Kubernetes CLI
