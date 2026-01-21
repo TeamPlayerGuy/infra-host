@@ -1,6 +1,6 @@
 ---
 - name: Facts playbook
-  hosts: all
+  hosts: "{{ target_hosts }}"
   tasks:
     - name: Get basic information
       debug:
