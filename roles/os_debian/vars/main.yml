@@ -1,3 +1,7 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for os_debian
+
+debian_packages:
+  - name: device-tree-compiler
+    note: Required to recompile Pi bootloader DTB
