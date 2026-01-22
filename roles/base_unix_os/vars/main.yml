@@ -7,23 +7,14 @@ base_kernel_modules:
   - br_netfilter
 
 base_packages:
-  - name: containerd.io
-    note: Container runtime
+  - name: curl
+    note: HTTP client
 
   - name: avahi-daemon
     note: Enables host.local mDNS
 
-  - name: curl
-    note: HTTP client
+  - name: systat
+    note: Robust system metrics
 
-  - name: kubelet
-    note: Kubernetes node agent
-
-  - name: kubeadm
-    note: Kubernetes cluster bootstrap tool
-
-  - name: kubectl
-    note: Kubernetes CLI
-
-  - name: device-tree-compiler
-    note: Required to recompile Pi bootloader DTB
+  - name: ca-certificates
+    note: Trusted certificates bundle for HTTPS package downloads
