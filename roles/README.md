@@ -3,7 +3,7 @@ Roles should be as simple as possible, however, we've got a lot of things to con
 OS Family: Debian or RHEL\
 Platform:  Pi, Panda, or VMWare\
 K8S Role:  Master or Worker\
-Feature:   Storage versus Transcode
+Feature:   Longhorn, Transcode, or AI
 
 **Role Complexity**\
 As complexity grows, testing becomes harder, you can use **tags** to run only specific tasks\
