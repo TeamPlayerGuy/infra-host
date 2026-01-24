@@ -6,15 +6,15 @@ Differences in OS, Architecture, Master versus Worker, Storage versus Transcode
 
 Simplest approach would be to start at the top and work down in specificity
 
-1.  Base Role - base_os\n
-    Any host that will run Kube\n
-    Disable swap for instance, required on any Unix host\n
-    Common sysctl (bridge netfilter, IP Forwarding)\n
+1.  Base Role - base_os\
+    Any host that will run Kube\
+    Disable swap for instance, required on any Unix host\
+    Common sysctl (bridge netfilter, IP Forwarding)\
 
-2.  OS Family Specific Roles - role_os_debian:role_os_windows:role_os_rhel\n
-    What does this specific OS require\n
-    Package manager differences, service names (httpd:rhel versus apache2:debian)\n
-    Kernel module enablement if OS specific\n
+2.  OS Family Specific Roles - role_os_debian:role_os_windows:role_os_rhel\
+    What does this specific OS require\
+    Package manager differences, service names (httpd:rhel versus apache2:debian)\
+    Kernel module enablement if OS specific\
 
 3.  Architecture/Platform Roles - role_platform_pi:role_platform_generic_arm:role_platform_x86
     Things are only true for this hardware platform
