@@ -7,7 +7,7 @@ Feature:   Storage versus Transcode
 
 **Role Complexity**\
 As complexity grows, testing becomes harder, you can use **tags** to run only specific tasks\
-If you tag each task within a role you can run only those tagged tasks
+If you tag each task within a role you can run only those tagged tasks\
 *#> ansible-playbook playbooks/base_role.yml --check --diff --tags ssh*
 
 ## Base Role
