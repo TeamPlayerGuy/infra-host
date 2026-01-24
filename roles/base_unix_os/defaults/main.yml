@@ -4,3 +4,13 @@
 
 ssh_allowed_users:
   - teamplayerguy
+
+sshd_config:
+  - regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+  - regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  - regexp: '^#?ClientAliveInterval'
+    line: 'ClientAliveInterval 60'
+  - regexp: '^#?ClientAliveCountMax'
+    line: 'ClientAliveCountMax 3'
