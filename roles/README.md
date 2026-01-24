@@ -5,7 +5,7 @@ Platform:  Pi, Panda, or VMWare\
 K8S Role:  Master or Worker\
 Feature:   Storage versus Transcode
 
-1.  ##Base Role\
+##Base Role\
     Example: base_unix_os\
     Any Unix host that will run Kube\
     Disable swap for instance, required on any Unix host\
