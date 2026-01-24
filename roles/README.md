@@ -5,13 +5,18 @@ Platform:  Pi, Panda, or VMWare\
 K8S Role:  Master or Worker\
 Feature:   Storage versus Transcode
 
+**Role Complexity**\
+As complexity grows, testing becomes harder, you can use **tags** to run only specific tasks\
+If you tag each task within a role you can run only those tagged tasks
+*#> ansible-playbook playbooks/base_role.yml --check --diff --tags ssh*
+
 ## Base Role
 Example: base_unix_os\
 Any Unix host that will run Kube\
 Disable swap for instance, required on any Unix host\
 Common sysctl (bridge netfilter, IP Forwarding)\
 This role should also contain logic to account for various Unix OS\
-ssh_service_name: "{{ 'ssh' if ansible_facts.os_family == 'Debian' else 'sshd' }}"
+*#> ssh_service_name: "{{ 'ssh' if ansible_facts.os_family == 'Debian' else 'sshd' }}"*
 
 ## OS Family Specific Roles
 Example: role_os_debian\
