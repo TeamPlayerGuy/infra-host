@@ -11,8 +11,8 @@
     line: "{{ item.line }}"
     state: present
     validate: /usr/sbin/sshd -t -f %s
-    loop: "{{ regexp: sshd_config.regexp, line: sshd_config.line }}"
-    notify: restart ssh
+  loop: "{{ sshd_config_variables }}"
+  notify: restart ssh
 
 - name: Configure SSH AllowUsers
   ansible.builtin.lineinfile:

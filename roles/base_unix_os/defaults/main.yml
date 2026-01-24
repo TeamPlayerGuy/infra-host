@@ -5,7 +5,7 @@
 ssh_allowed_users:
   - teamplayerguy
 
-sshd_config:
+sshd_config_variables:
   - regexp: '^#?PermitRootLogin'
     line: 'PermitRootLogin no'
   - regexp: '^#?PasswordAuthentication'
