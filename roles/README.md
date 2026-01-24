@@ -1,12 +1,11 @@
-# ToDo
+# Role Structure
+Roles should be as simple as possible, however, we've got a lot of things to consider\
+OS Family: Debian or RHEL\
+Platform:  Pi, Panda, or VMWare\
+K8S Role:  Master or Worker\
+Feature:   Storage versus Transcode
 
-## Role Structure
-Roles should be as simple as possible, however, we've got a lot of things to consider
-Differences in OS, Architecture, Master versus Worker, Storage versus Transcode
-
-Simplest approach would be to start at the top and work down in specificity
-
-1.  **Base Role** - Example: base_unix_os\
+1.  **##Base Role##** - Example: base_unix_os\
     Any Unix host that will run Kube\
     Disable swap for instance, required on any Unix host\
     Common sysctl (bridge netfilter, IP Forwarding)\
