@@ -2,8 +2,16 @@
 ---
 # tasks file for base_unix_os
 
-- import_tasks: packages.yml
-- import_tasks: kernel_modules.yml
-- import_tasks: sysctl.yml
-- import_tasks: swap_off.yml
-- import_tasks: ssh_hardening.yml
+- name: Install base Unix packages
+  import_tasks: packages.yml
+- name: Install base Unix kernel modules for Kubernetes
+  import_tasks: kernel_modules.yml
+- name: Disable swap memory
+  import_tasks: swap_off.yml
+- name: Harden SSH
+  import_tasks: ssh_hardening.yml
+- name: Install Oh My Bash for executing Ansible user
+  import_tasks: oh_my_bash.yml
+
+#- name: Sysctl stuff
+#  import_tasks: sysctl.yml

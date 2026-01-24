@@ -2,7 +2,7 @@
 ---
 # vars file for k8s_base
 
-base_packages:
+k8s_packages:
   - name: containerd.io
     note: Container runtime
 
