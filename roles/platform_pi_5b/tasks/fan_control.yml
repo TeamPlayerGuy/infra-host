@@ -1,1 +1,15 @@
 ---
+
+- name: Get contents of each trip point file
+  ansible.builtin.slurp:
+    path: /sys/class/thermal/thermal_zone0/trip_point_{{ item.index }}_temp
+  loop: "{{ pi_fan_trip_points }}"
+  register: config_files
+
+- name: Update trip point files if required
+  ansible.builtin.shell: |
+    echo "{{ item.item.temp }}" > /sys/class/thermal/thermal_zone0/trip_point_{{ item.item.index }}_temp
+  loop: "{{ config_files.results }}"
+  loop_control:
+    label: "trip_point_{{ item.item.index }}_temp -> {{ item.item.temp }}*C"
+  when: (item.content | b64decode | trim) != (item.item.temp | string)
