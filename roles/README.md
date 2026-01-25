@@ -19,7 +19,7 @@ This role should also contain logic to account for various Unix OS\
 *#> ssh_service_name: "{{ 'ssh' if ansible_facts.os_family == 'Debian' else 'sshd' }}"*
 
 ## OS Family Specific Roles
-Example: role_os_debian\
+Example: role_os_ubuntu\
 What does this specific OS require?\
 HTTPS repo enablement, different Repo, GPG keys, package names\
 SELinux policies versus AppArmor profiles\
