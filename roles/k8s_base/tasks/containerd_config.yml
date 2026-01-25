@@ -1,15 +1,9 @@
 ---
 
-- name: Generate default containerd config toml
-  ansible.builtin.shell: containerd config default > /etc/containerd/config.toml
-  args:
-    creates: /etc/containerd/config.toml
-
-- name: Enable systemd cgroup driver
-  ansible.builtin.replace:
-    path: /etc/containerd/config.toml
-    regexp: '^(\s*)SystemdCgroup\s*=\s*false'
-    replace: '\1SystemdCgroup = true'
+- name: Copy validated config.toml from role files
+  ansible.builtin.copy:
+    src: config.toml
+    dest: /etc/containerd/config.toml
     backup: yes
   notify: restart containerd
 
