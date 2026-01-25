@@ -7,6 +7,9 @@
     backup: yes
   notify: restart containerd
 
+- name: Flush handlers (restart containerd if config changed)
+  ansible.builtin.meta: flush_handlers
+
 - name: Start containerd
   ansible.builtin.systemd:
     name: containerd
