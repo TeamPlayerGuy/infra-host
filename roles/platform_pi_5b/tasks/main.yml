@@ -2,5 +2,11 @@
 ---
 # tasks file for platform_pi
 
-- import_tasks: fan_control.yml
-- import_tasks: bootloader_override.yml
+- name: Configure fan controls
+  import_tasks: fan_control.yml
+  tags:
+    - fan_control
+- name: Overwrite Bootloader firmware dtb
+  import_tasks: bootloader_override.yml
+  tags:
+    - bootloader
