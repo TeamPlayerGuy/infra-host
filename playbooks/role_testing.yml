@@ -1,5 +1,6 @@
 ---
-- name: Ensure basic roles
+- name: Ensure roles work
   hosts: suarm16wrk002
   roles:
     - base_unix_os
+    - os_debian
