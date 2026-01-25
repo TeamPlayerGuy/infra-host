@@ -2,4 +2,4 @@
 - name: Ensure roles work
   hosts: suarm16wrk002
   roles:
-    - platform_pi_5b
+    - k8s_base

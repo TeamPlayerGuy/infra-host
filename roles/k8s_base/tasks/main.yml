@@ -3,7 +3,6 @@
 # tasks file for k8s_base
 
 - name: Install k8s packages
-  ansible.builtin.packages:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ k8s_packages.name }}"
+  import_tasks: k8s_packages.yml
+  tags:
+    - k8s_packages
