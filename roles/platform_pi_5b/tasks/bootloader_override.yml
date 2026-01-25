@@ -2,14 +2,6 @@
 ---
 # Bootloader device tree override for Raspberry Pi 5
 
-- name: Backup existing device tree blob
-  ansible.builtin.copy:
-    src: /boot/firmware/current/bcm2712-rpi-5-b.dtb
-    dest: /boot/firmware/current/bcm2712-rpi-5-b.dtb.bak
-    remote_src: true
-    force: false
-  become: true
-
 - name: Deploy custom device tree blob
   ansible.builtin.copy:
     src: bcm2712-rpi-5-b.dtb
@@ -18,4 +10,3 @@
     group: root
     mode: '0644'
     backup: true
-  become: true
