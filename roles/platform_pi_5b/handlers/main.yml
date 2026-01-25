@@ -1,3 +1,10 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # handlers file for platform_pi
+
+- name: reboot system
+  ansible.builtin.reboot:
+    msg: "Rebooting to apply bootloader changes"
+    pre_reboot_delay: 5
+    post_reboot_delay: 30
+    reboot_timeout: 300
