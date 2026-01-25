@@ -6,3 +6,7 @@
   import_tasks: k8s_packages.yml
   tags:
     - k8s_packages
+- name: Configure containerd config toml
+  import tasks: containerd_config.yml
+  tags:
+    - k8s_packages
