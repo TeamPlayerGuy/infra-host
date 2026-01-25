@@ -19,6 +19,9 @@ base_packages:
   - name: ca-certificates
     note: Trusted certificates bundle for HTTPS package downloads
 
+  - name: jq
+    note: JSON query tool, useful for querying active state of things
+
 k8s_sysctl_conf:
   - name: net.bridge.bridge-nf-call-ip6tables
     value: 1
