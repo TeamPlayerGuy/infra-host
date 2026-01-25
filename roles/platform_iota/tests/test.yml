@@ -3,4 +3,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - compute_ai_accelerator
+    - platform_iota

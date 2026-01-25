@@ -1,3 +1,16 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # defaults file for base_os
+
+ssh_allowed_users:
+  - teamplayerguy
+
+sshd_config_variables:
+  - regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+  - regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  - regexp: '^#?ClientAliveInterval'
+    line: 'ClientAliveInterval 60'
+  - regexp: '^#?ClientAliveCountMax'
+    line: 'ClientAliveCountMax 3'

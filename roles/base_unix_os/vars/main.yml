@@ -13,7 +13,7 @@ base_packages:
   - name: avahi-daemon
     note: Enables host.local mDNS
 
-  - name: systat
+  - name: sysstat
     note: Robust system metrics
 
   - name: ca-certificates

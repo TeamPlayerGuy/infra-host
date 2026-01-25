@@ -1,6 +1,5 @@
 ---
 - name: Ensure basic roles
-  hosts: localhost
-  gather_facts: false
+  hosts: suarm16wrk002
   roles:
-    - base
+    - base_unix_os

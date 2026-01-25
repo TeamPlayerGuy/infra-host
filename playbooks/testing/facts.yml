@@ -1,12 +1,13 @@
 ---
 - name: Facts playbook
-  hosts: "{{ target_hosts }}"
+  hosts: kubepi3
   tasks:
     - name: Get basic information
       debug:
         msg: >
           Hostname: {{ ansible_facts.hostname }} -
           OS: {{ ansible_facts.distribution}} {{ ansible_facts.distribution_version }} -
+          Family: {{ ansible_facts.os_family }} -
           Kernel: {{ ansible_facts.kernel }} -
           Architecture: {{ ansible_facts.architecture }} -
           Memory: {{ ansible_facts.memtotal_mb }}

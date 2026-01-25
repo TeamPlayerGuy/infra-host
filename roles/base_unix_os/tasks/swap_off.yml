@@ -1,14 +1,18 @@
 ---
 
+- name: Check current swap status
+  ansible.builtin.command: swapon --show --noheadings
+  register: swap_check
+  changed_when: false
+  check_mode: false
+
 - name: Disable swap
   ansible.builtin.command: swapoff -a
-  register: swapoff_result
-  changed_when: ansible_swaptotal_mb | int > 0
-  when: ansible_swaptotal_mb | int > 0
+  when: swap_check.stdout | length > 0
 
 - name: Remove swap entry from /etc/fstab
-  ansible.posix.mount:
-    name: swap
-    fstype: swap
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    regexp: '^\s*\S+\s+(none|swap)\s+swap\s+'
     state: absent
-  when: swapoff_result is changed
+    backup: yes
