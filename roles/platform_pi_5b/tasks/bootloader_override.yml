@@ -20,7 +20,7 @@
     delay: 10
     timeout: 300
 
-- name: Verify V2 cgroup memory controller is available
+- name: Pull currently active cgroup controllers
   ansible.builtin.command: cat /sys/fs/cgroup/cgroup.controllers
   register: cgroup_controllers
   changed_when: false
