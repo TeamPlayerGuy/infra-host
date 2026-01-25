@@ -10,4 +10,24 @@
     group: root
     mode: '0644'
     backup: true
-  notify: reboot_system
+  notify: reboot system
+  
+- name: Flush Handlers (Reboot if bootloader changed)
+  meta: flush_handlers
+
+- name: Wait for system to be fully ready
+  ansible.builtin.wait_for_connection:
+    delay: 10
+    timeout: 300
+
+- name: Verify V2 cgroup memory controller is available
+  ansible.builtin.command: cat /sys/fs/cgroup/cgroup.controllers
+  register: cgroup_controllers
+  changed_when: false
+
+- name: Assert memory controller is available
+  ansible.builtin.assert:
+    that:
+      - "'memory' in cgroup_controllers.stdout"
+    fail_msg: "FAILED: cgroup memory not in <{{ cgroup_controllers.stdout }}>"
+    success_msg: "PASSED: cgroup memory in <{{ cgroup_controllers.stdout}}>"
