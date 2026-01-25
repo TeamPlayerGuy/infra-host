@@ -2,6 +2,6 @@
 
 - name: Install required packages
   ansible.builtin.package:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
-  loop: "{{ base_packages.name }}"
+  loop: "{{ base_packages }}"

@@ -22,6 +22,3 @@
   import_tasks: oh_my_bash.yml
   tags:
     - omb
-
-#- name: Sysctl stuff
-#  import_tasks: sysctl.yml
