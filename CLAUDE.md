@@ -30,7 +30,7 @@ ansible-playbook playbooks/day1/1-bootstrap-os.yml --check
 ### Role Layering (Applied in Order)
 
 1. **base_unix_os** - Base OS config for all K8s nodes (swap, packages, kernel modules, SSH hardening)
-2. **os_debian / os_rhel** - OS family-specific configurations
+2. **os_ubuntu / os_rhel** - OS family-specific configurations
 3. **platform_pi / platform_generic_arm** - Hardware-specific configurations (bootloader, cgroups)
 4. **k8s_master / k8s_worker** - Kubernetes node role setup (kubeadm init vs join)
 5. **feature_*** - Optional features (storage_longhorn, storage_nas, compute_ai, compute_transcode)
