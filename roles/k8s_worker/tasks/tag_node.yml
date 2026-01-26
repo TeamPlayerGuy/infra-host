@@ -1,0 +1,10 @@
+---
+
+- name: Tag newly created node as a worker node
+  ansible.builtin.command: kubectl label node {{ inventory_hostname_short }} node-role.kubernetes.io/worker=worker
+  delegate_to: "{{ groups['k8s_live_masters'][0] }}"
+  failed_when: false
+  changed_when: false
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+
