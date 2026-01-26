@@ -1,5 +1,5 @@
 ---
 - name: Ensure roles work
-  hosts: suarm16wrk002
+  hosts: k8s_new_workers
   roles:
     - k8s_worker
