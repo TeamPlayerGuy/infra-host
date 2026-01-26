@@ -2,4 +2,4 @@
 - name: Ensure roles work
   hosts: suarm16wrk002
   roles:
-    - k8s_base
+    - k8s_worker

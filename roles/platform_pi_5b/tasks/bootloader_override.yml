@@ -9,7 +9,6 @@
     owner: root
     group: root
     mode: '0644'
-    backup: true
   notify: reboot system
   
 - name: Flush Handlers (Reboot if bootloader changed)
