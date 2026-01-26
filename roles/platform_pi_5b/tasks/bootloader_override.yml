@@ -8,7 +8,7 @@
     dest: /boot/firmware/current/bcm2712-rpi-5-b.dtb
     owner: root
     group: root
-    mode: '0644'
+    mode: '0755'
   notify: reboot system
   
 - name: Flush Handlers (Reboot if bootloader changed)
