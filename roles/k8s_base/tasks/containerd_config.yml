@@ -1,6 +1,6 @@
 ---
 
-- name: Copy validated config.toml from role files
+- name: Copy config.toml that ensures containerd uses systemd cgroup manager
   ansible.builtin.copy:
     src: config.toml
     dest: /etc/containerd/config.toml
