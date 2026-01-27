@@ -6,3 +6,9 @@
   ansible.builtin.systemd:
     name: containerd
     state: restarted
+
+- name: restart kubelet
+  ansible.builtin.systemd:
+    name: kubelet
+    state: restarted
+    daemon_reload: yes
