@@ -12,15 +12,15 @@
   loop: "{{ k8s_packages }}"
 
 - name: Ensure kubelet directory exists
-  file:
+  ansible.builtin.file:
     path: /var/lib/kubelet
     state: directory
     mode: '0775'
 
 - name: Configure kubelet node IP via template
-  template:
+  ansible.builtin.template:
     src: kubeadm-flags.env.j2
-    dest: /var/libe/kubelet/kubeadm-flags.env
+    dest: /var/lib/kubelet/kubeadm-flags.env
     owner: root
     group: root
     mode: '0644'
