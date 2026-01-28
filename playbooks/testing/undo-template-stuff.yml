@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - name: Delete previously created file
-      file:
+      ansible.builtin.file:
         path: /home/teamplayerguy/{{ ansible_facts.hostname | lower }}_report.txt
         state: absent
