@@ -3,11 +3,11 @@
 # tasks file for k8s_worker
 
 - name: Join worker to cluster
-  import_tasks: worker_join.yml
+  ansible.builtin.import_tasks: worker_join.yml
   tags:
     - worker_join
 
 - name: Tag node with labels
-  import_tasks: tag_node.yml
+  ansible.builtin.import_tasks: tag_node.yml
   tags:
     - tag_node
