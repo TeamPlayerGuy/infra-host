@@ -12,7 +12,7 @@
   notify: reboot system
   
 - name: Flush Handlers (Reboot if bootloader changed)
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Wait for system to be fully ready
   ansible.builtin.wait_for_connection:

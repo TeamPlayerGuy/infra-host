@@ -3,21 +3,21 @@
   hosts: suarm16wrk001
   tasks:
     - name: Install apache
-      package:
+      ansible.builtin.package:
         name: apache2
         state: latest
     - name: start httpd
-      service:
+      ansible.builtin.service:
         name: apache2
         state: started
     - name: Modify config
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/apache2/apache2.conf
         line: "# Managed by ansible"
         insertafter: EOF
       notify: restart httpd
   handlers:
     - name: Restart apache
-      service:
+      ansible.builtin.service:
         name: apache2
         state: restarted

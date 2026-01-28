@@ -3,14 +3,14 @@
 # tasks file for os_ubuntu
 
 - name: Create keyring directory
-  import_tasks: create_key_dir.yml
+  ansible.builtin.import_tasks: create_key_dir.yml
   tags:
     - secure_repo
 - name: Add Docker secure repo
-  import_tasks: docker_repo.yml
+  ansible.builtin.import_tasks: docker_repo.yml
   tags:
     - secure_repo
 - name: Add Kubernetes secure repo
-  import_tasks: kube_repo.yml
+  ansible.builtin.import_tasks: kube_repo.yml
   tags:
     - secure_repo
