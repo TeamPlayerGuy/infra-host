@@ -1,0 +1,19 @@
+---
+
+- name: Reset kubeadm
+  command: kubeadm reset -f
+
+- name: Remove old configs
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/kubernetes
+    - /var/lib/kubelet
+    - /var/lib/etcd
+    - ~/.kube
+
+- name: Restart containerd
+  systemd:
+    name: containerd
+    state: restarted

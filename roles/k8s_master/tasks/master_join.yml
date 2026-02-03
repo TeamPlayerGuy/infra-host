@@ -32,10 +32,7 @@
       run_once: true
 
     - name: Generate control-plane join command
-      ansible.builtin.command: >-
-        kubeadm token create --print-join-command
-        --certificate-key {{ certificate_key }}
-        --ttl 2h
+      ansible.builtin.command: kubeadm token create --print-join-command --certificate-key {{ certificate_key }} --ttl 2h
       register: join_command
       delegate_to: "{{ groups['k8s_live_masters'][0] }}"
       run_once: true
