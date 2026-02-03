@@ -1,5 +1,5 @@
 ---
 - name: Ensure roles work
-  hosts: k8s_new_workers
+  hosts: k8s_new_masters
   roles:
-    - k8s_worker
+    - k8s_master
