@@ -1,8 +1,8 @@
 ---
 - name: Facts playbook
-  hosts: kubepi3
+  hosts: k8s_live_cluster
   tasks:
-    - name: Get basic information
+    - name: Display host information
       ansible.builtin.debug:
         msg: >
           Hostname: {{ ansible_facts.hostname }} -
@@ -11,3 +11,6 @@
           Kernel: {{ ansible_facts.kernel }} -
           Architecture: {{ ansible_facts.architecture }} -
           Memory: {{ ansible_facts.memtotal_mb }}
+    - name: Display Python version
+      ansible.builtin.debug:
+        msg: "Python: {{ ansible_facts['python']['version']['major'] }}.{{ ansible_facts['python']['version']['minor'] }}.{{ ansible_facts['python']['version']['micro'] }}"
