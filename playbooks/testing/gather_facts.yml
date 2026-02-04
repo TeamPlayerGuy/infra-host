@@ -1,6 +1,10 @@
 ---
 - name: Facts playbook
   hosts: k8s_live_cluster
+  gather_facts: true
+
+  vars:
+    kube: kubelet.service
   tasks:
     - name: Display host information
       ansible.builtin.debug:
@@ -11,6 +15,22 @@
           Kernel: {{ ansible_facts.kernel }} -
           Architecture: {{ ansible_facts.architecture }} -
           Memory: {{ ansible_facts.memtotal_mb }}
+    
     - name: Display Python version
       ansible.builtin.debug:
         msg: "Python: {{ ansible_facts['python']['version']['major'] }}.{{ ansible_facts['python']['version']['minor'] }}.{{ ansible_facts['python']['version']['micro'] }}"
+
+    - name: Gather Service facts
+      ansible.builtin.service_facts:
+
+    - name: Get Kubelet facts
+      block:
+      - name: Print status when running
+        ansible.builtin.debug:
+          msg: "{{ ansible_facts.services[kube].name }} is running on host {{ ansible_facts['hostname'] }}."
+        when: ansible_facts.services[kube].state == 'running'
+      - name: Print status when stopped
+        ansible.builtin.debug:
+          msg: "{{ ansible_facts.services[kube].name }} is NOT RUNNING  on host {{ ansible_facts['hostname'] }}."
+        when: ansible_facts.services[kube].state != 'running'
+      when: kube in ansible_facts.services
