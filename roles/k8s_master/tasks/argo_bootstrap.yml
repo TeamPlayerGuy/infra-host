@@ -1,0 +1,20 @@
+- name: Add Argo Helm repo
+  kubernetes.core.helm_repository:
+    name: argo
+    repo_url: https://argoproj.github.io/argo-helm
+
+- name: Install Argo CD
+  kubernetes.core.helm:
+    name: argocd
+    chart_ref: argo/argo-cd
+    release_namespace: argocd
+    create_namespace: true
+    values:
+      server:
+        service:
+          type: LoadBalancer
+
+- name: Apply Argo CD root application
+  kubernetes.core.k8s:
+    state: present
+    src: files/argocd-root-application.yaml
