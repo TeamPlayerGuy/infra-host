@@ -34,3 +34,7 @@
           msg: "{{ ansible_facts.services[kube].name }} is NOT RUNNING  on host {{ ansible_facts['hostname'] }}."
         when: ansible_facts.services[kube].state != 'running'
       when: kube in ansible_facts.services
+    
+    - name: Get IP address of eth0 Interface
+      ansible.builtin.debug:
+        msg: "{{ ansible_eth0.ipv4.address }}"
