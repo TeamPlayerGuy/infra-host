@@ -1,0 +1,30 @@
+---
+
+- name: Copy config.toml that ensures containerd uses systemd cgroup manager
+  ansible.builtin.copy:
+    src: config.toml
+    dest: /etc/containerd/config.toml
+    backup: yes
+  notify: restart containerd
+
+- name: Flush handlers (restart containerd if config changed)
+  ansible.builtin.meta: flush_handlers
+
+- name: Start containerd
+  ansible.builtin.systemd:
+    name: containerd
+    enabled: yes
+    state: started
+
+- name: Pull currently applied containerd runtime options
+  ansible.builtin.shell: |
+    crictl info 2>/dev/null | jq -r '.config.containerd.runtimes.runc.options.SystemdCgroup'
+  register: systemd_cgroup_setting
+  changed_when: false
+
+- name: Assert SystemdCgroup is currently in use
+  ansible.builtin.assert:
+    that:
+      - systemd_cgroup_setting.stdout == 'true'
+    fail_msg: "FAILED: SystemdCgroup is either not present or false"
+    success_msg: "PASSED: Containerd is using SystemdCgroup"

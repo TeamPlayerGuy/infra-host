@@ -1,3 +1,11 @@
 #SPDX-License-Identifier: MIT-0
 ---
-# tasks file for k8s_master
+- name: Join control-plane node to cluster
+  ansible.builtin.import_tasks: master_join.yml
+  tags:
+    - master_join
+
+- name: Tag control-plane node
+  ansible.builtin.import_tasks: tag_node.yml
+  tags:
+    - tag_node

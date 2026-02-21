@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+
+- name: Verify control-plane node has correct role label
+  ansible.builtin.command: >-
+    kubectl label node {{ inventory_hostname_short }}
+    node-role.kubernetes.io/control-plane=
+    --overwrite
+  delegate_to: "{{ groups['k8s_live_masters'][0] }}"
+  failed_when: false
+  changed_when: false
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf

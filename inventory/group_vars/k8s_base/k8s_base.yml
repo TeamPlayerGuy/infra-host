@@ -1,0 +1,15 @@
+---
+# vars file for k8s_base
+
+k8s_packages:
+  - name: containerd.io
+    note: Container runtime
+
+  - name: kubelet
+    note: Kubernetes node agent
+
+  - name: kubeadm
+    note: Kubernetes cluster bootstrap tool
+
+  - name: kubectl
+    note: Kubernetes CLI

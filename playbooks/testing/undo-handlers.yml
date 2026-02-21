@@ -3,7 +3,7 @@
   hosts: suarm16wrk001
   tasks:
     - name: uninstall apache2
-      package:
+      ansible.builtin.package:
         name: apache2
         state: absent
         autoremove: yes

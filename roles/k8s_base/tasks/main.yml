@@ -3,7 +3,10 @@
 # tasks file for k8s_base
 
 - name: Install k8s packages
-  ansible.builtin.packages:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ k8s_packages.name }}"
+  ansible.builtin.import_tasks: k8s_packages.yml
+  tags:
+    - k8s_packages
+- name: Configure containerd config toml
+  ansible.builtin.import_tasks: containerd_config.yml
+  tags:
+    - k8s_packages

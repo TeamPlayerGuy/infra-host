@@ -1,7 +1,0 @@
----
-
-- name: Install required packages
-  ansible.builtin.package:
-    name: "{{ item.name }}"
-    state: present
-  loop: "{{ base_packages }}"

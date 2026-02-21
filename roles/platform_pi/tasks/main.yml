@@ -1,6 +1,0 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for platform_pi
-
-- import_tasks: fan_control.yml
-- import_tasks: bootloader_override.yml

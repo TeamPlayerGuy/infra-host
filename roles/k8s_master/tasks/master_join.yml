@@ -1,0 +1,45 @@
+#SPDX-License-Identifier: MIT-0
+---
+
+- name: Check if node is connected to current cluster
+  ansible.builtin.shell: kubectl get node {{ inventory_hostname_short }} 2>/dev/null
+  delegate_to: "{{ groups['k8s_live_masters'][0] }}"
+  register: node_check
+  failed_when: false
+  changed_when: false
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+
+- name: Join cluster as control-plane if not already in cluster
+  block:
+    - name: Reset node if previously configured
+      ansible.builtin.command: kubeadm reset -f
+      args:
+        removes: /etc/kubernetes/kubelet.conf
+
+    - name: Upload certificates on existing control-plane
+      ansible.builtin.command: kubeadm init phase upload-certs --upload-certs
+      register: upload_certs
+      delegate_to: "{{ groups['k8s_live_masters'][0] }}"
+      run_once: true
+      changed_when: false
+      environment:
+        KUBECONFIG: /etc/kubernetes/admin.conf
+
+    - name: Extract certificate key from output
+      ansible.builtin.set_fact:
+        certificate_key: "{{ upload_certs.stdout_lines[-1] }}"
+      run_once: true
+
+    - name: Generate control-plane join command
+      ansible.builtin.command: kubeadm token create --print-join-command --certificate-key {{ certificate_key }} --ttl 2h
+      register: join_command
+      delegate_to: "{{ groups['k8s_live_masters'][0] }}"
+      run_once: true
+      changed_when: false
+      environment:
+        KUBECONFIG: /etc/kubernetes/admin.conf
+
+    - name: Join control-plane to cluster
+      ansible.builtin.command: "{{ join_command.stdout }} --control-plane"
+  when: node_check.rc != 0

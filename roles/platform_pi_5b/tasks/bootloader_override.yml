@@ -1,0 +1,32 @@
+#SPDX-License-Identifier: MIT-0
+---
+# Bootloader device tree override for Raspberry Pi 5
+
+- name: Deploy custom device tree blob
+  ansible.builtin.copy:
+    src: bcm2712-rpi-5-b.dtb
+    dest: /boot/firmware/current/bcm2712-rpi-5-b.dtb
+    owner: root
+    group: root
+    mode: '0755'
+  notify: reboot system
+  
+- name: Flush Handlers (Reboot if bootloader changed)
+  ansible.builtin.meta: flush_handlers
+
+- name: Wait for system to be fully ready
+  ansible.builtin.wait_for_connection:
+    delay: 10
+    timeout: 300
+
+- name: Pull currently active cgroup controllers
+  ansible.builtin.command: cat /sys/fs/cgroup/cgroup.controllers
+  register: cgroup_controllers
+  changed_when: false
+
+- name: Assert memory controller is available
+  ansible.builtin.assert:
+    that:
+      - "'memory' in cgroup_controllers.stdout"
+    fail_msg: "FAILED: cgroup memory not in <{{ cgroup_controllers.stdout }}>"
+    success_msg: "PASSED: cgroup memory in <{{ cgroup_controllers.stdout}}>"

@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for os_ubuntu
+
+- name: Create keyring directory
+  ansible.builtin.import_tasks: create_key_dir.yml
+  tags:
+    - secure_repo
+- name: Add Docker secure repo
+  ansible.builtin.import_tasks: docker_repo.yml
+  tags:
+    - secure_repo
+- name: Add Kubernetes secure repo
+  ansible.builtin.import_tasks: kube_repo.yml
+  tags:
+    - secure_repo

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for platform_pi
+
+- name: Configure fan controls
+  ansible.builtin.import_tasks: fan_control.yml
+  tags:
+    - fan_control
+- name: Overwrite Bootloader firmware dtb
+  ansible.builtin.import_tasks: bootloader_override.yml
+  tags:
+    - bootloader

@@ -1,5 +1,0 @@
----
-- name: Ensure basic roles
-  hosts: suarm16wrk002
-  roles:
-    - base_unix_os
