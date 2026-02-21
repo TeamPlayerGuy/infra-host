@@ -1,0 +1,14 @@
+---
+# vars file for platform_pi
+
+pi_fan_trip_points:
+  - index: 0
+    temp: 110000
+  - index: 1
+    temp: 10000
+  - index: 2
+    temp: 55000
+  - index: 3
+    temp: 65000
+  - index: 4
+    temp: 75000
